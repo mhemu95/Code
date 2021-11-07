@@ -24,16 +24,17 @@ def post_list(request):
     return render(request, 'back/post_list.html', context)
 
 
-#CRUD starts here...
 def post_detail(request, id):
     # In your detail template, you don't need a for loop; As you are just passing one post to the template:
     post = Post.objects.get(id=id)
+    comment = post.comment.filter(status=True)
     context = {
-        'post': post
+        'post': post,
+        'comment': comment
     }
     return render(request, 'front/post_detail.html', context)
 
-
+#CRUD starts here...
 def create_post(request):
     form = Postform()
     if request.method == 'POST':
