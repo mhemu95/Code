@@ -83,3 +83,6 @@ def search(request):
         'find': find
     }
     return render(request, 'search.html', context)
+
+def new(request):
+    return "hello"
